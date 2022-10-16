@@ -27,11 +27,12 @@ public class ScrollManageView extends ScrollView {
 
 
     private View mDependence;
-
+    private boolean horizontalScroll = true;
     private boolean mHideActionPanel = false;
     private int durationAnimate = DURATION_TRANSLATE;
     private int dependenceResourceId;
     private float startDependenceX;
+    private float startDependenceY;
 
     private int actionFlag = 0;
 
@@ -49,6 +50,7 @@ public class ScrollManageView extends ScrollView {
         TypedArray t = context.obtainStyledAttributes(attrs, R.styleable.ScrollManageView);
         dependenceResourceId = t.getResourceId(R.styleable.ScrollManageView_id_dependence, 0);
         durationAnimate = t.getInteger(R.styleable.ScrollManageView_durationAnimate, DURATION_TRANSLATE);
+        horizontalScroll = t.getBoolean(R.styleable.ScrollManageView_horizontalScroll, horizontalScroll);
         t.recycle();
     }
 
@@ -58,7 +60,12 @@ public class ScrollManageView extends ScrollView {
         super.onAttachedToWindow();
         if (dependenceResourceId != 0) {
             mDependence = getRootView().findViewById(dependenceResourceId);
-            mDependence.getViewTreeObserver().addOnGlobalLayoutListener(() -> startDependenceX = mDependence.getX());
+            mDependence.getViewTreeObserver().addOnGlobalLayoutListener(() ->{
+                startDependenceX = mDependence.getX();
+                startDependenceY = mDependence.getY();
+
+            }
+            );
 
         }
     }
@@ -96,13 +103,21 @@ public class ScrollManageView extends ScrollView {
 
 
     private void hideView() {
+        if(horizontalScroll)
         mDependence.animate().x((startDependenceX + (mDependence.getWidth() * PREFIX_WIDTH))).setDuration(durationAnimate).start();
+        else
+            mDependence.animate().y((startDependenceY + (mDependence.getHeight() * PREFIX_WIDTH))).setDuration(durationAnimate).start();
+
         mHideActionPanel = true;
 
     }
 
     private void showView() {
-        mDependence.animate().x((startDependenceX)).setDuration(durationAnimate).start();
+        if(horizontalScroll)
+        mDependence.animate().x(startDependenceX).setDuration(durationAnimate).start();
+        else
+            mDependence.animate().y(startDependenceY).setDuration(durationAnimate).start();
+
         mHideActionPanel = false;
     }
 
