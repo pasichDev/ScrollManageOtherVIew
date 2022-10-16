@@ -16,10 +16,20 @@ import com.example.scrollmanageotherview.R;
 
 public class ScrollManageView extends ScrollView {
 
-    private final int durationAnimation = 200;
-    private final float prefixWidth = 1.25F;
+    /**
+     * Constant that determines the animation time if not set by the user
+     */
+    private final int DURATION_TRANSLATE = 200;
+    /**
+     * A constant that specifies the prefix by which the shift length should be multiplied
+     */
+    private final float PREFIX_WIDTH = 1.25F;
+
+
     private View mDependence;
+
     private boolean mHideActionPanel = false;
+    private int durationAnimate = DURATION_TRANSLATE;
     private int dependenceResourceId;
     private float startDependenceX;
 
@@ -38,6 +48,7 @@ public class ScrollManageView extends ScrollView {
     private void init(Context context, AttributeSet attrs) {
         TypedArray t = context.obtainStyledAttributes(attrs, R.styleable.ScrollManageView);
         dependenceResourceId = t.getResourceId(R.styleable.ScrollManageView_id_dependence, 0);
+        durationAnimate = t.getInteger(R.styleable.ScrollManageView_durationAnimate, DURATION_TRANSLATE);
         t.recycle();
     }
 
@@ -85,13 +96,13 @@ public class ScrollManageView extends ScrollView {
 
 
     private void hideView() {
-        mDependence.animate().x((startDependenceX + (mDependence.getWidth() * prefixWidth))).setDuration(durationAnimation).start();
+        mDependence.animate().x((startDependenceX + (mDependence.getWidth() * PREFIX_WIDTH))).setDuration(durationAnimate).start();
         mHideActionPanel = true;
 
     }
 
     private void showView() {
-        mDependence.animate().x((startDependenceX)).setDuration(durationAnimation).start();
+        mDependence.animate().x((startDependenceX)).setDuration(durationAnimate).start();
         mHideActionPanel = false;
     }
 
