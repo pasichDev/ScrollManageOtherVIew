@@ -20,45 +20,53 @@
         android:gravity="center"
         android:orientation="horizontal">
         <Button
+            android:id="@+id/buttonBottomStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/buttonCustom"
             android:text="bottom|start"/>
+
         <Button
+            android:id="@+id/buttonBottomCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/buttonCustom"
+            android:text="bottom|center"/>
+        <Button
+            android:id="@+id/buttonBottomEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/buttonCustom"
             android:text="bottom|end"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/buttonCustom"
-            android:text="bottom|center"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
         <Button
+            android:id="@+id/buttonTopStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/buttonCustom"
             android:text="top|start"/>
 
         <Button
+            android:id="@+id/buttonTopCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/buttonCustom"
+            android:text="top|center"/>
+        <Button
+            android:id="@+id/buttonTopEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/buttonCustom"
             android:text="top|end"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/buttonCustom"
-            android:text="top|center"/>
     </LinearLayout>
 
 

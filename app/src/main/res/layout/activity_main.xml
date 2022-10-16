@@ -6,7 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.example.scrollmanageotherview.view.ScrollManageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".ScrollingActivity"
+        app:id_dependence="@+id/otherView"
+        app:horizontalScroll="true">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/large_text" />
+    </com.example.scrollmanageotherview.view.ScrollManageView>
 
 
     <FrameLayout
@@ -15,7 +29,7 @@
         android:layout_height="50dp"
         android:background="@drawable/backup_other_view"
         android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/other_view_margin"
         >
         <TextView
             android:layout_width="wrap_content"

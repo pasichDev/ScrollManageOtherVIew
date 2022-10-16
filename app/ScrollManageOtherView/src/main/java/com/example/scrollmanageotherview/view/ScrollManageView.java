@@ -13,6 +13,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ScrollView;
 
+import androidx.annotation.Keep;
+
 import com.example.scrollmanageotherview.R;
 
 public class ScrollManageView extends ScrollView {
@@ -26,9 +28,12 @@ public class ScrollManageView extends ScrollView {
      */
     private final float PREFIX = 1.10F;
 
+    /**
+     * Method that allows you to set the type of sliding horizontal (true) / vertical (false)
+     */
+    private boolean horizontalScroll = true;
 
     private View mDependence;
-    private boolean horizontalScroll = true;
     private boolean mHideActionPanel = false;
     private int durationAnimate = DURATION_TRANSLATE;
     private int dependenceResourceId;
@@ -60,16 +65,18 @@ public class ScrollManageView extends ScrollView {
     }
 
 
+    private void updateDependenceParam() {
+        startDependenceX = mDependence.getX();
+        startDependenceY = mDependence.getY();
+    }
+
+
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (dependenceResourceId != 0) {
             mDependence = getRootView().findViewById(dependenceResourceId);
-            mDependence.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
-                startDependenceX = mDependence.getX();
-                startDependenceY = mDependence.getY();
-
-            });
+            mDependence.getViewTreeObserver().addOnGlobalLayoutListener(this::updateDependenceParam);
 
         }
     }
@@ -160,4 +167,23 @@ public class ScrollManageView extends ScrollView {
         }
     }
 
+
+    /**
+     * Method that allows you to set the type of sliding horizontal (true) / vertical (false)
+     *
+     * @param arg - parameter
+     */
+    @Keep
+    public void setHorizontalScroll(boolean arg) {
+        this.horizontalScroll = arg;
+    }
+
+    /**
+     * Method for setting animation duration
+     * @param duration - duration (int < 10000)
+     */
+    @Keep
+    public void setDurationAnimate(int duration) {
+        this.durationAnimate = duration > 10000 ? 9999 : duration;
+    }
 }

@@ -1,12 +1,12 @@
 package com.example.scrollmanageotherview;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.scrollmanageotherview.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ManageActivity {
 
     private ActivityMainBinding binding;
 
@@ -20,7 +20,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void openSettingsOtherView(){
-        new DialogSettingsOtherView().show(getSupportFragmentManager(),"otherSetiings");
+    private void openSettingsOtherView() {
+        new DialogSettingsOtherView(binding.otherView).show(getSupportFragmentManager(), "otherSetiings");
+    }
+
+    @Override
+    public void updateScrollView() {
+
     }
 }
