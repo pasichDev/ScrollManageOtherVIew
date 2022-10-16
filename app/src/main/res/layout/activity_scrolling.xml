@@ -42,7 +42,7 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:background="@drawable/backup_other_view"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="bottom|start"
         android:layout_margin="20dp"
         />
 

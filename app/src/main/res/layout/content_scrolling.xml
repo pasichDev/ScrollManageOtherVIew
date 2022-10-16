@@ -8,7 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ScrollingActivity"
     app:id_dependence="@+id/otherView"
-    app:horizontalScroll="true"
+    app:horizontalScroll="false"
     tools:showIn="@layout/activity_scrolling">
 
     <TextView

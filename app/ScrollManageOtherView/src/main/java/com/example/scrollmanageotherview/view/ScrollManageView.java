@@ -6,6 +6,7 @@ import static android.view.MotionEvent.ACTION_MOVE;
 import static android.view.MotionEvent.ACTION_UP;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -60,12 +61,11 @@ public class ScrollManageView extends ScrollView {
         super.onAttachedToWindow();
         if (dependenceResourceId != 0) {
             mDependence = getRootView().findViewById(dependenceResourceId);
-            mDependence.getViewTreeObserver().addOnGlobalLayoutListener(() ->{
+            mDependence.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
                 startDependenceX = mDependence.getX();
                 startDependenceY = mDependence.getY();
 
-            }
-            );
+            });
 
         }
     }
@@ -103,22 +103,58 @@ public class ScrollManageView extends ScrollView {
 
 
     private void hideView() {
-        if(horizontalScroll)
-        mDependence.animate().x((startDependenceX + (mDependence.getWidth() * PREFIX_WIDTH))).setDuration(durationAnimate).start();
+
+        if (horizontalScroll)
+            mDependence.animate().x(getTranslateDependenceX()).setDuration(durationAnimate).start();
         else
-            mDependence.animate().y((startDependenceY + (mDependence.getHeight() * PREFIX_WIDTH))).setDuration(durationAnimate).start();
+            mDependence.animate().y(getTranslateDependenceY()).setDuration(durationAnimate).start();
 
         mHideActionPanel = true;
 
     }
 
     private void showView() {
-        if(horizontalScroll)
-        mDependence.animate().x(startDependenceX).setDuration(durationAnimate).start();
-        else
-            mDependence.animate().y(startDependenceY).setDuration(durationAnimate).start();
+        if (horizontalScroll)
+            mDependence.animate().x(startDependenceX).setDuration(durationAnimate).start();
+        else mDependence.animate().y(startDependenceY).setDuration(durationAnimate).start();
 
         mHideActionPanel = false;
+    }
+
+
+    private float getTranslateDependenceX() {
+        if (getLocationDependence() == 1)
+            return (startDependenceX + (mDependence.getWidth() * PREFIX_WIDTH));
+        else return (startDependenceX - (mDependence.getWidth() * PREFIX_WIDTH));
+    }
+
+    private float getTranslateDependenceY() {
+        if (getLocationDependence() == 1)
+            return (startDependenceY + (mDependence.getHeight() * PREFIX_WIDTH));
+        else return (startDependenceY - (mDependence.getHeight() * PREFIX_WIDTH));
+    }
+
+
+    /**
+     * Method that determines in which direction to move the dependency
+     * 1 - right, bottom
+     * 0 - left, top
+     *
+     * @return - the side in which we move the object
+     */
+
+    private int getLocationDependence() {
+        int widthDisplay = Resources.getSystem().getDisplayMetrics().widthPixels / 2;
+        int heightDisplay = Resources.getSystem().getDisplayMetrics().heightPixels / 2;
+
+
+        if (horizontalScroll) {
+            if (startDependenceX > widthDisplay) return 1;
+            else return 0;
+        } else {
+            if (startDependenceY > heightDisplay) return 1;
+            else return 0;
+        }
     }
 
 }
