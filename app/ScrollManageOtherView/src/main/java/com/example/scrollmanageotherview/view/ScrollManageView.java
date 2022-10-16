@@ -90,7 +90,7 @@ public class ScrollManageView extends ScrollView {
         int action = ev.getAction();
         actionFlag = actionFlag + action;
         if (action == ACTION_DOWN || action == ACTION_MOVE) {
-            if (!mHideActionPanel && actionFlag >= 12) hideView();
+            if (!mHideActionPanel && actionFlag >= 14) hideView();
         }
 
 
