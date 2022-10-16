@@ -90,4 +90,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="otherView">Other view</string>
+    <string name="fragmentName">Fragment</string>
+    <string name="settings_gravity">setViewGravity</string>
 </resources>
