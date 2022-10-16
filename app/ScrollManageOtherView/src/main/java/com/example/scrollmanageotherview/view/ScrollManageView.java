@@ -20,11 +20,11 @@ public class ScrollManageView extends ScrollView {
     /**
      * Constant that determines the animation time if not set by the user
      */
-    private final int DURATION_TRANSLATE = 200;
+    private final int DURATION_TRANSLATE = 300;
     /**
      * A constant that specifies the prefix by which the shift length should be multiplied
      */
-    private final float PREFIX_WIDTH = 1.25F;
+    private final float PREFIX = 1.10F;
 
 
     private View mDependence;
@@ -34,7 +34,8 @@ public class ScrollManageView extends ScrollView {
     private int dependenceResourceId;
     private float startDependenceX;
     private float startDependenceY;
-
+    private int displayWidth;
+    private int displayHeight;
     private int actionFlag = 0;
 
     public ScrollManageView(Context context, AttributeSet attrs) {
@@ -53,6 +54,9 @@ public class ScrollManageView extends ScrollView {
         durationAnimate = t.getInteger(R.styleable.ScrollManageView_durationAnimate, DURATION_TRANSLATE);
         horizontalScroll = t.getBoolean(R.styleable.ScrollManageView_horizontalScroll, horizontalScroll);
         t.recycle();
+
+        displayWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        displayHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
 
@@ -124,14 +128,14 @@ public class ScrollManageView extends ScrollView {
 
     private float getTranslateDependenceX() {
         if (getLocationDependence() == 1)
-            return (startDependenceX + (mDependence.getWidth() * PREFIX_WIDTH));
-        else return (startDependenceX - (mDependence.getWidth() * PREFIX_WIDTH));
+            return (startDependenceX + ((displayWidth - mDependence.getWidth()) * PREFIX));
+        else return (startDependenceX - ((displayWidth - mDependence.getWidth()) * PREFIX));
     }
 
     private float getTranslateDependenceY() {
         if (getLocationDependence() == 1)
-            return (startDependenceY + (mDependence.getHeight() * PREFIX_WIDTH));
-        else return (startDependenceY - (mDependence.getHeight() * PREFIX_WIDTH));
+            return (startDependenceY + ((displayHeight - mDependence.getHeight()) * PREFIX));
+        else return (startDependenceY - ((displayHeight - mDependence.getHeight()) * PREFIX));
     }
 
 
@@ -144,15 +148,14 @@ public class ScrollManageView extends ScrollView {
      */
 
     private int getLocationDependence() {
-        int widthDisplay = Resources.getSystem().getDisplayMetrics().widthPixels / 2;
-        int heightDisplay = Resources.getSystem().getDisplayMetrics().heightPixels / 2;
-
+        int widthDisplayCenter = displayWidth / 2;
+        int heightDisplayCenter = displayHeight / 2;
 
         if (horizontalScroll) {
-            if (startDependenceX > widthDisplay) return 1;
+            if (startDependenceX > widthDisplayCenter) return 1;
             else return 0;
         } else {
-            if (startDependenceY > heightDisplay) return 1;
+            if (startDependenceY > heightDisplayCenter) return 1;
             else return 0;
         }
     }
