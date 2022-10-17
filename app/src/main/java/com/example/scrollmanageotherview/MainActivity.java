@@ -21,11 +21,10 @@ public class MainActivity extends AppCompatActivity implements ManageActivity {
 
 
     private void openSettingsOtherView() {
-        new DialogSettingsOtherView(binding.otherView, binding.rootScrollView.getHorizontalScroll()).show(getSupportFragmentManager(), "otherSetiings");
+        new DialogSettingsOtherView(binding.otherView).show(getSupportFragmentManager(), "otherSetiings");
     }
 
     @Override
     public void changeHorizontalScroll(boolean checked) {
-        binding.rootScrollView.setHorizontalScroll(checked);
     }
 }

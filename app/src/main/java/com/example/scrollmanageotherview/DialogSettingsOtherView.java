@@ -18,11 +18,10 @@ public class DialogSettingsOtherView extends BottomSheetDialogFragment {
     private final FrameLayout otherView;
     private final CoordinatorLayout.LayoutParams layoutParams;
     private ManageActivity manageActivity;
-    private final boolean horizontalScroll;
 
-    public DialogSettingsOtherView(FrameLayout layout, boolean horizontalScroll) {
+    public DialogSettingsOtherView(FrameLayout layout) {
         this.otherView = layout;
-        this.horizontalScroll = horizontalScroll;
+
         this.layoutParams = new CoordinatorLayout.LayoutParams(layout.getLayoutParams());
     }
 
@@ -34,7 +33,7 @@ public class DialogSettingsOtherView extends BottomSheetDialogFragment {
         builder.setContentView(binding.getRoot());
         manageActivity = (ManageActivity) requireContext();
 
-        binding.checkbox.setChecked(horizontalScroll);
+      //  binding.checkbox.setChecked(horizontalScroll);
 
         binding.buttonTopStart.setOnClickListener(v -> setGravityView(Gravity.TOP | Gravity.START));
         binding.buttonTopEnd.setOnClickListener(v -> setGravityView(Gravity.TOP | Gravity.END));
@@ -50,7 +49,7 @@ public class DialogSettingsOtherView extends BottomSheetDialogFragment {
 
 
     private void setHorizontalScroll(boolean checked){
-        manageActivity.changeHorizontalScroll(checked);
+   //     manageActivity.changeHorizontalScroll(checked);
         dismiss();
     }
 

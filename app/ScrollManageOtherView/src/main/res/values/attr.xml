@@ -2,5 +2,8 @@
 <resources><declare-styleable name="ScrollManageView">
     <attr name="id_dependence" format="reference" />
     <attr name="durationAnimate" format="integer" />
-    <attr name="horizontalScroll" format="boolean" />
+    <attr name="orientationHideDependence" format="integer">
+        <flag name="horizontal" value="0"/>
+        <flag name="vertical" value="1"/>
+    </attr>
 </declare-styleable></resources>

@@ -28,12 +28,10 @@ public class ScrollManageView extends ScrollView {
      */
     private final float PREFIX = 1.10F;
 
-    /**
-     * Method that allows you to set the type of sliding horizontal (true) / vertical (false)
-     */
-    private boolean horizontalScroll = true;
+    private int ORIENTATION_DEP = OrientationHideDependence.HORIZONTAL;
 
     private View mDependence;
+    private int orientationHideDependence;
     private boolean mHideActionPanel = false;
     private int durationAnimate = DURATION_TRANSLATE;
     private int dependenceResourceId;
@@ -57,7 +55,7 @@ public class ScrollManageView extends ScrollView {
         TypedArray t = context.obtainStyledAttributes(attrs, R.styleable.ScrollManageView);
         dependenceResourceId = t.getResourceId(R.styleable.ScrollManageView_id_dependence, 0);
         durationAnimate = t.getInteger(R.styleable.ScrollManageView_durationAnimate, DURATION_TRANSLATE);
-        horizontalScroll = t.getBoolean(R.styleable.ScrollManageView_horizontalScroll, horizontalScroll);
+        orientationHideDependence = t.getInteger(R.styleable.ScrollManageView_orientationHideDependence, ORIENTATION_DEP);
         t.recycle();
 
         displayWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
@@ -115,7 +113,7 @@ public class ScrollManageView extends ScrollView {
 
     private void hideView() {
 
-        if (horizontalScroll)
+        if (orientationHideDependence ==  OrientationHideDependence.HORIZONTAL)
             mDependence.animate().x(getTranslateDependenceX()).setDuration(durationAnimate).start();
         else
             mDependence.animate().y(getTranslateDependenceY()).setDuration(durationAnimate).start();
@@ -125,7 +123,7 @@ public class ScrollManageView extends ScrollView {
     }
 
     private void showView() {
-        if (horizontalScroll)
+        if (orientationHideDependence ==  OrientationHideDependence.HORIZONTAL)
             mDependence.animate().x(startDependenceX).setDuration(durationAnimate).start();
         else mDependence.animate().y(startDependenceY).setDuration(durationAnimate).start();
 
@@ -158,7 +156,7 @@ public class ScrollManageView extends ScrollView {
         int widthDisplayCenter = displayWidth / 2;
         int heightDisplayCenter = displayHeight / 2;
 
-        if (horizontalScroll) {
+        if (orientationHideDependence == 0) {
             if (startDependenceX > widthDisplayCenter) return 1;
             else return 0;
         } else {
@@ -183,17 +181,17 @@ public class ScrollManageView extends ScrollView {
      * @return true - horizontal scroll / false vertical scroll
      */
     @Keep
-    public boolean getHorizontalScroll() {
-        return horizontalScroll;
+    public int getHorizontalScroll() {
+        return orientationHideDependence;
     }
 
     /**
-     * Method that allows you to set the type of sliding horizontal (true) / vertical (false)
+     * Method that allows you to set the type of sliding horizontal (0) / vertical (1)
      *
-     * @param arg - parameter
+     * @param orientationHideDependence - parameter
      */
     @Keep
-    public void setHorizontalScroll(boolean arg) {
-        this.horizontalScroll = arg;
+    public void setHorizontalScroll(int orientationHideDependence) {
+        this.orientationHideDependence = orientationHideDependence > 1 ? OrientationHideDependence.HORIZONTAL : orientationHideDependence;
     }
 }
