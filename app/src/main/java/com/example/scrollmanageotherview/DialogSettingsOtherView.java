@@ -59,7 +59,6 @@ public class DialogSettingsOtherView extends BottomSheetDialogFragment {
         layoutParams.gravity = gravityView;
         layoutParams.setMargins((int) getResources().getDimension(R.dimen.other_view_margin), (int) getResources().getDimension(R.dimen.other_view_margin), (int) getResources().getDimension(R.dimen.other_view_margin), (int) getResources().getDimension(R.dimen.other_view_margin));
         otherView.setLayoutParams(layoutParams);
-        manageActivity.updateScrollView();
         dismiss();
     }
 }

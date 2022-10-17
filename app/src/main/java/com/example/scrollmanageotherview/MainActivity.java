@@ -25,11 +25,6 @@ public class MainActivity extends AppCompatActivity implements ManageActivity {
     }
 
     @Override
-    public void updateScrollView() {
-
-    }
-
-    @Override
     public void changeHorizontalScroll(boolean checked) {
         binding.rootScrollView.setHorizontalScroll(checked);
     }
