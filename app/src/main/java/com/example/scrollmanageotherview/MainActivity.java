@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements ManageActivity {
     }
 
     @Override
-    public void changeHorizontalScroll(boolean checked) {
+    public void changeHorizontalScroll(int orientation) {
+        binding.rootScrollView.setOrientationHideDependence(orientation);
     }
 }

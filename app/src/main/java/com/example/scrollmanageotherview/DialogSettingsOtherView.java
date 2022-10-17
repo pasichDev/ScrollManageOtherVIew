@@ -40,16 +40,15 @@ public class DialogSettingsOtherView extends BottomSheetDialogFragment {
         binding.buttonTopCenter.setOnClickListener(v -> setGravityView(Gravity.TOP | Gravity.CENTER));
         binding.buttonBottomStart.setOnClickListener(v -> setGravityView(Gravity.BOTTOM | Gravity.START));
         binding.buttonBottomCenter.setOnClickListener(v -> setGravityView(Gravity.BOTTOM | Gravity.CENTER));
-        binding.buttonBottomEnd.setOnClickListener(v -> setGravityView(Gravity.BOTTOM | Gravity.END));
-
-        binding.checkbox.setOnCheckedChangeListener((buttonView, isChecked) ->setHorizontalScroll(isChecked));
+        binding.horizontal.setOnClickListener(v ->setHorizontalScroll(0));
+        binding.vertical.setOnClickListener(v ->setHorizontalScroll(1));
 
         return builder;
     }
 
 
-    private void setHorizontalScroll(boolean checked){
-   //     manageActivity.changeHorizontalScroll(checked);
+    private void setHorizontalScroll(int orientation){
+        manageActivity.changeHorizontalScroll(orientation);
         dismiss();
     }
 
