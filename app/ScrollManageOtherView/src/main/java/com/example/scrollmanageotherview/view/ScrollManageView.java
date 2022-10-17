@@ -167,6 +167,25 @@ public class ScrollManageView extends ScrollView {
         }
     }
 
+    /**
+     * Method for setting animation duration
+     *
+     * @param duration - duration (int < 10000)
+     */
+    @Keep
+    public void setDurationAnimate(int duration) {
+        this.durationAnimate = duration > 10000 ? 9999 : duration;
+    }
+
+    /**
+     * Method that allows you to set the type of sliding
+     *
+     * @return true - horizontal scroll / false vertical scroll
+     */
+    @Keep
+    public boolean getHorizontalScroll() {
+        return horizontalScroll;
+    }
 
     /**
      * Method that allows you to set the type of sliding horizontal (true) / vertical (false)
@@ -176,14 +195,5 @@ public class ScrollManageView extends ScrollView {
     @Keep
     public void setHorizontalScroll(boolean arg) {
         this.horizontalScroll = arg;
-    }
-
-    /**
-     * Method for setting animation duration
-     * @param duration - duration (int < 10000)
-     */
-    @Keep
-    public void setDurationAnimate(int duration) {
-        this.durationAnimate = duration > 10000 ? 9999 : duration;
     }
 }

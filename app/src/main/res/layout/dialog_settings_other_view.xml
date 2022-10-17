@@ -45,7 +45,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="20dp"
         android:orientation="horizontal">
         <Button
             android:id="@+id/buttonTopStart"
@@ -68,6 +67,13 @@
             android:text="top|end"/>
 
     </LinearLayout>
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:checked="true"
+        android:text="Horizontal Scroll Enable"/>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
