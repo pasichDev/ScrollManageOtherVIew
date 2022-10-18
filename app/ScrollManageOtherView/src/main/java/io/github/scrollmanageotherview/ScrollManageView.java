@@ -1,4 +1,4 @@
-package com.pasich.scrollmanageotherview.view;
+package io.github.scrollmanageotherview;
 
 import static android.view.MotionEvent.ACTION_CANCEL;
 import static android.view.MotionEvent.ACTION_DOWN;
@@ -14,8 +14,6 @@ import android.view.View;
 import android.widget.ScrollView;
 
 import androidx.annotation.Keep;
-
-import com.pasich.scrollmanageotherview.R;
 
 
 public class ScrollManageView extends ScrollView {

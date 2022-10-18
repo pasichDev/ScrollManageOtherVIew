@@ -1,4 +1,4 @@
-package com.pasich.scrollmanageotherview.view;
+package  io.github.scrollmanageotherview;
 
 import androidx.annotation.Keep;
 

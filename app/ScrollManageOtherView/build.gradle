@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.pasich.scrollmanageotherview'
+    namespace 'io.github.scrollmanageotherview'
     compileSdk 33
 
     defaultConfig {
