@@ -13,7 +13,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ScrollView;
 
-import androidx.annotation.Keep;
 
 
 public class ScrollManageView extends ScrollView {
@@ -168,7 +167,6 @@ public class ScrollManageView extends ScrollView {
      *
      * @param duration - duration (int < 10000)
      */
-    @Keep
     public void setDurationAnimate(int duration) {
         this.durationAnimate = duration > 10000 ? 9999 : duration;
     }
@@ -178,7 +176,7 @@ public class ScrollManageView extends ScrollView {
      *
      * @return true - horizontal scroll / false vertical scroll
      */
-    @Keep
+
     public int getOrientationHideDependence() {
         return orientationHideDependence;
     }
@@ -188,7 +186,6 @@ public class ScrollManageView extends ScrollView {
      *
      * @param orientationHideDependence - parameter
      */
-    @Keep
     public void setOrientationHideDependence(int orientationHideDependence) {
         this.orientationHideDependence = orientationHideDependence > 1 ? OrientationHideDependence.HORIZONTAL : orientationHideDependence;
     }
